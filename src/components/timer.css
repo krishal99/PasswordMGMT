@@ -1,0 +1,32 @@
+.container
+{
+    width: 12.5vw;
+    height: 9vw;
+    background: #ffffff;
+    position: relative;
+    text-align: center;
+}
+
+.clock
+{
+    width: 100%;
+    font-size: 3.7vw;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+}
+
+.start
+{
+    background-color: green;
+    cursor: pointer;
+    position: absolute;
+    color: white;
+    width: 40%;
+    height: 40%;
+
+    bottom: 5px;
+    left: 5px;
+}
