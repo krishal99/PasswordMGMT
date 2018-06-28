@@ -6,23 +6,36 @@ export class Timer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            sec: 0,
-            min: 0
+            sec: 5,
+            min: 0,
+            started: false
         }
         this.startTimer = this.startTimer.bind(this)
     }
 
-    startTimer() {
-        this.setState({
-            sec: this.state.sec + 1
-        })
-
-        if (this.state.sec == 59) {
+    tick() {
+        if (this.state.sec > 0 && this.state.min >= 0) {
             this.setState({
-                sec: 0,
-                min: this.state.min + 1
+                sec: this.state.sec - 1
             })
+
+            if (this.state.sec < 0) {
+                this.setState({
+                    sec: 59,
+                    min: this.state.min - 1
+                })
+            }
         }
+    }
+
+    startTimer() {
+        if (this.state.started == false) {
+            var clock = setInterval(this.tick.bind(this), 1000)
+        }
+
+        this.setState({
+            started: true
+        })
     }
 
     render() {
