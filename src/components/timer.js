@@ -1,16 +1,23 @@
 import React from 'react';
 import Clock from 'react-live-clock';
 import './timer.css';
+//import InlineEdit from 'react-edit-inline';
 
 export class Timer extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            initSec: 10,
+            initMin: 0,
             sec: 5,
             min: 0,
             started: false
         }
+
         this.startTimer = this.startTimer.bind(this)
+        this.stopTimer = this.stopTimer.bind(this)
+        this.resetTimer = this.resetTimer.bind(this)
+        this.tick = this.tick.bind(this)
     }
 
     tick() {
@@ -26,11 +33,16 @@ export class Timer extends React.Component {
                 })
             }
         }
+        else {
+            this.setState({
+                started: false
+            })
+        }
     }
 
     startTimer() {
         if (this.state.started == false) {
-            var clock = setInterval(this.tick.bind(this), 1000)
+            this.clock = setInterval(this.tick, 1000)
         }
 
         this.setState({
@@ -38,11 +50,28 @@ export class Timer extends React.Component {
         })
     }
 
+    stopTimer() {
+        clearInterval(this.clock)
+        this.setState({
+            started: false
+        })
+    }
+
+    resetTimer() {
+        clearInterval(this.clock)
+        this.setState({
+            sec: this.state.initSec,
+            min: this.state.initMin,
+            started: false
+        })
+    }
+
     render() {
         return (
             <div className='container'>
                 <span className='clock'>{(this.state.min < 10) ? ('0' + this.state.min) : this.state.min}:{(this.state.sec < 10) ? ('0' + this.state.sec) : this.state.sec}</span>
-                <div className='start' onClick={this.startTimer}>Start</div>
+                <div className={this.state.started ? 'stop' : 'start'} onClick={this.state.started ? this.stopTimer :this.startTimer}><span className='vcenter'>{this.state.started ? 'Stop' : 'Start'}</span></div>
+                <div className="reset" onClick={this.resetTimer}><span className="vcenter">Reset</span></div>
             </div>
         );
     }

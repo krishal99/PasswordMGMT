@@ -7,7 +7,7 @@ export class DayDate extends React.Component {
       return (
         <div className='daydate'>
             <Clock className='day' format={'dddd'} />
-            <Clock className='date' format={'MMMM Mo'} />
+            <Clock className='date' format={'MMMM Do'} />
         </div>
       );
     }

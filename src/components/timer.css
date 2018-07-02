@@ -21,12 +21,47 @@
 .start
 {
     background-color: green;
-    cursor: pointer;
-    position: absolute;
     color: white;
-    width: 40%;
+    cursor: pointer;
+    width: 45%;
     height: 30%;
 
-    bottom: 5px;
-    left: 5px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: table;
+}
+
+.stop
+{
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    width: 45%;
+    height: 30%;
+
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: table;
+}
+
+.reset
+{
+    background-color: grey;
+    color: white;
+    cursor: pointer;
+    width: 45%;
+    height: 30%;
+
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: table;
+}
+
+.vcenter
+{
+    display: table-cell;
+    vertical-align: middle;
 }
