@@ -1,7 +1,8 @@
 import React from 'react';
 import Clock from 'react-live-clock';
 import './timer.css';
-//import InlineEdit from 'react-edit-inline';
+import Button from 'react-ions/lib/components/Button'
+import style from './style.scss'
 
 export class Timer extends React.Component {
     constructor(props) {
@@ -70,8 +71,9 @@ export class Timer extends React.Component {
         return (
             <div className='container'>
                 <span className='clock'>{(this.state.min < 10) ? ('0' + this.state.min) : this.state.min}:{(this.state.sec < 10) ? ('0' + this.state.sec) : this.state.sec}</span>
-                <div className={this.state.started ? 'stop' : 'start'} onClick={this.state.started ? this.stopTimer :this.startTimer}><span className='vcenter'>{this.state.started ? 'Stop' : 'Start'}</span></div>
-                <div className="reset" onClick={this.resetTimer}><span className="vcenter">Reset</span></div>
+                {/*<div className={this.state.started ? 'stop' : 'start'} onClick={this.state.started ? this.stopTimer :this.startTimer}><span className='vcenter'>{this.state.started ? 'Stop' : 'Start'}</span></div>
+                <div className="reset" onClick={this.resetTimer}><span className="vcenter">Reset</span></div>*/}
+                <Button>Start</Button>
             </div>
         );
     }
