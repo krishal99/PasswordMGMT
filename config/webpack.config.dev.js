@@ -108,6 +108,36 @@ module.exports = {
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
       {
+        test: /\.scss$/,
+          use: [
+            require.resolve('style-loader'),
+            {
+            loader: "style-loader",
+            options: {
+              modules: true,
+              includePaths: ['node_modules/react-ions'],
+              importLoaders: 1,
+              localIdentName: '[name]--[local]-[hash:base64:8]'
+            }
+          }, {
+            loader: "css-loader" ,
+            options: {
+              modules: true,
+              includePaths: ['node_modules/react-ions'],
+              importLoaders: 1,
+              localIdentName: '[name]--[local]-[hash:base64:8]'
+            }
+          }, {
+            loader: "sass-loader",
+            options: {
+              modules: true,
+              includePaths: ['node_modules/react-ions'],
+              importLoaders: 1,
+              localIdentName: '[name]--[local]-[hash:base64:8]'
+            }
+          }]
+      },
+      {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
         use: [
@@ -198,7 +228,7 @@ module.exports = {
             // its runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.scss$/],
             loader: require.resolve('file-loader'),
             options: {
               name: 'static/media/[name].[hash:8].[ext]',

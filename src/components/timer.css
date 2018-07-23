@@ -1,67 +1,36 @@
-.container
+.box
 {
-    width: 12.5vw;
-    height: 9vw;
-    background: #ffffff;
-    position: relative;
-    text-align: center;
+    width: 200px !important;
+    height: 150px !important;
+    margin: 20px !important;
+    padding: 0px !important;
 }
 
 .clock
 {
-    width: 100%;
-    font-size: 3.7vw;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -90%);
+    margin: 10px;
+    height: 130px;
+    text-align: center;
+    padding-top: 30px;
 }
 
 .start
 {
-    background-color: green;
-    color: white;
-    cursor: pointer;
-    width: 45%;
-    height: 30%;
-
     position: absolute;
     bottom: 10px;
     left: 10px;
-    display: table;
-}
-
-.stop
-{
-    background-color: red;
-    color: white;
-    cursor: pointer;
-    width: 45%;
-    height: 30%;
-
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    display: table;
+    width: 85px;
 }
 
 .reset
 {
-    background-color: grey;
-    color: white;
-    cursor: pointer;
-    width: 45%;
-    height: 30%;
-
     position: absolute;
     bottom: 10px;
     right: 10px;
-    display: table;
+    width: 85px;
 }
 
-.vcenter
+.set
 {
-    display: table-cell;
-    vertical-align: middle;
+    margin-right: 10px !important;
 }

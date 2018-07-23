@@ -9,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Helmet bodyAttributes={{style: 'background-color : #AB323B'}}/>
+        <Helmet bodyAttributes={{style: 'background-color : #9198A0'}}/>
         <DayDate/>
         <Time/>
         <Timer/>
