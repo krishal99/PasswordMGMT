@@ -6,8 +6,7 @@ var ticker;
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request == 'init') {
-        chrome.storage.local.set({"running" : running});
-        sendResponse(started);
+        sendResponse(running);
     }
 
     if (request.type == 'start') {
@@ -33,8 +32,7 @@ function tick() {
             stop();
         }
 
-        chrome.storage.local.set({"started" : started}, function() {
-        });
+        chrome.storage.local.set({"started" : started});
 }
 
 function start() {
