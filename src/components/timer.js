@@ -1,3 +1,4 @@
+/*global chrome*/
 import React from 'react';
 import { Button, Segment, Popup } from 'semantic-ui-react'
 import './timer.css'
@@ -20,25 +21,25 @@ export class Timer extends React.Component {
         this.stopTimer = this.stopTimer.bind(this)
         this.resetTimer = this.resetTimer.bind(this)
         this.setTimer = this.setTimer.bind(this)
-        this.tick = this.tick.bind(this)
+        //this.tick = this.tick.bind(this)
     }
 
-    tick() {
-        if (this.state.sec > 0 && this.state.min >= 0) {
-            this.setState({
-                sec: this.state.sec - 1
-            })
-        } else if (this.state.sec == 0 && this.state.min != 0) {
-            this.setState({
-                sec: 59,
-                min: this.state.min - 1
-            })
-        } else {
-            this.setState({
-                started: false
-            })
-        }
-    }
+/*     tick() {
+            if (this.state.sec > 0 && this.state.min >= 0) {
+                this.setState({
+                    sec: this.state.sec - 1
+                })
+            } else if (this.state.sec == 0 && this.state.min != 0) {
+                this.setState({
+                    sec: 59,
+                    min: this.state.min - 1
+                })
+            } else {
+                this.setState({
+                    started: false
+                })
+            }
+    } */
 
     handleChange(event) {
         this.setState({
@@ -47,11 +48,10 @@ export class Timer extends React.Component {
     }
 
     setTimer(event) {
-        console.log(this.state.time)
         event.preventDefault()
 
         var newTime = this.state.time.split(':')
-        console.log(newTime[0])
+        console.log('The time has been set to ' + this.state.time)
         this.setState({
             intitSec: newTime[2] > 0 ? Number(newTime[2]) : 0,
             initMin: Number(newTime[1]) + Number(newTime[0]) * 60,
@@ -62,31 +62,96 @@ export class Timer extends React.Component {
 
     startTimer() {
         if (this.state.started == false) {
-            this.clock = setInterval(this.tick, 1000)
+            chrome.runtime.sendMessage(
+                {content: this.state.sec + (this.state.min * 60), type: "start"},
+                function (response) {
+                    console.log(response);
+                }
+            );
+            //this.clock = setInterval(this.tick, 1000)
         }
-
+        
         this.setState({
             started: true
         })
     }
 
     stopTimer() {
-        clearInterval(this.clock)
+        //clearInterval(this.clock)
         this.setState({
             started: false
         })
+        chrome.runtime.sendMessage('stop');
     }
 
     resetTimer() {
-        clearInterval(this.clock)
+        this.stopTimer
         this.setState({
             sec: this.state.initSec,
-            min: this.state.initMin,
-            started: false
+            min: this.state.initMin
         })
     }
 
+/*     componentDidUpdate() {
+        chrome.storage.local.get("started", function(items) {
+            if (!chrome.runtime.error) {
+                if (items.started == false) {
+                    this.stopTimer
+                }
+            }
+        }.bind(this));
+    } */
+
+    componentWillMount() {
+        chrome.runtime.onMessage.addListener(
+            function(request, sender, sendResponse) {
+                if (request.type == 'time') {
+                    console.log(request.content);
+                    this.setState({
+                        sec: request.content % 60,
+                        min: Math.floor(request.content / 60)
+                    })
+                }
+
+                if (request == 'stopping') {
+                    console.log('stopping...')
+                    this.setState({
+                        started: false
+                    })
+                    //clearInterval(this.clock)
+                }
+
+                if (request == 'starting') {
+                    console.log('starting...')
+                    this.setState({
+                        started: true
+                    })
+                }
+            }.bind(this)
+        );
+
+        chrome.runtime.sendMessage(
+            "init",
+            function (response) {
+                if (response) {
+                    chrome.storage.local.get(['time', 'running'], function(items) {
+                        if (!chrome.runtime.error) {
+                            console.log(items.time);
+                            console.log('Is running: ' + items.running)
+                            this.setState({
+                                sec: items.time % 60,
+                                min: Math.floor(items.time / 60),
+                                started: items.running
+                            })
+                            //this.clock = setInterval(this.tick, 1000);
+                        }
+                    }.bind(this));
+                }
+            }.bind(this));
+    }
+
     render() {
+        
         const { started } = this.state;
 
         return(

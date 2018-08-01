@@ -1,8 +1,15 @@
 {
   "name": "Study Space",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "manifest_version": 2,
   "description": "A more productive homepage.",
+  "background": {
+    "scripts": [
+      "timerbg.js"
+    ],
+
+    "persistent": false
+  },
 
   "browser_action": {
     "default_popup": "popup.html"
@@ -10,5 +17,10 @@
 
   "chrome_url_overrides": {
     "newtab": "newtab.html"
-  }
+  },
+
+  "permissions": [
+    "background",
+    "storage"
+  ]
 }
