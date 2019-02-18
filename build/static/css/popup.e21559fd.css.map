@@ -1,0 +1,1 @@
+{"version":3,"sources":["core/App.css"],"names":[],"mappings":"AAAA,KACE,uCACA,YACA,YAAc","file":"static/css/popup.e21559fd.css","sourcesContent":[".App {\n  font-family: Arial, Helvetica, sans-serif;\n  width: 300px;\n  height: 300px;\n}\n\n\n\n\n// WEBPACK FOOTER //\n// ./src/core/App.css"],"sourceRoot":""}

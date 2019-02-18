@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
+import Login from '../views/login'
+import Register from '../views/register';
 import './App.css';
-import { DayDate } from '../components/day-date';
-import { Time } from '../components/time';
-import Helmet from 'react-helmet';
-import { Timer } from '../components/timer';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      view: 'login'
+    }
+
+    this.handleRegister = this.handleRegister.bind(this);
+    this.handleBack = this.handleBack.bind(this);
+  }
+
+  handleBack() {
+    this.setState({
+      view: 'login'
+    });
+  }
+
+  handleRegister() {
+    console.log('This works');
+    this.setState({
+      view: 'register'
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <Helmet bodyAttributes={{style: 'background-color : #9198A0'}}/>
-        <DayDate/>
-        <Time/>
-        <Timer/>
+        {this.state.view == 'login' ? <Login register={this.handleRegister} /> : null}
+        {this.state.view == 'register' ? <Register back={this.handleBack} /> : null}
       </div>
     );
   }
