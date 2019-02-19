@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Form, Segment } from 'semantic-ui-react';
+import { Button, Form } from 'semantic-ui-react';
 import '../core/App.css';
 
 class Register extends Component {
   render() {
     return (
       <div className="App">
-        <Segment raised className='login'>
+
           <Form>
             <Form.Field>
               <label>Username</label>
@@ -23,7 +23,7 @@ class Register extends Component {
             <Button primary type='submit'>Register</Button>
             <Button onClick={this.props.back}>Back</Button>
           </Form>
-        </Segment>
+
       </div>
     );
   }

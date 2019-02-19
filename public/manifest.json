@@ -1,15 +1,8 @@
 {
-  "name": "Study Space",
-  "version": "0.2.1",
+  "name": "Password Manager",
+  "version": "0.1",
   "manifest_version": 2,
-  "description": "A more productive homepage.",
-  "background": {
-    "scripts": [
-      "timerbg.js"
-    ],
-
-    "persistent": false
-  },
+  "description": "Manage your passwords.",
 
   "browser_action": {
     "default_popup": "popup.html"

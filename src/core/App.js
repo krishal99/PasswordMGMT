@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from '../views/login'
 import Register from '../views/register';
+import Main from '../views/main';
 import './App.css';
 
 class App extends Component {
@@ -8,7 +9,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      view: 'login'
+      view: 'main'
     }
 
     this.handleRegister = this.handleRegister.bind(this);
@@ -33,6 +34,7 @@ class App extends Component {
       <div className="App">
         {this.state.view == 'login' ? <Login register={this.handleRegister} /> : null}
         {this.state.view == 'register' ? <Register back={this.handleBack} /> : null}
+        {this.state.view == 'main' ? <Main /> : null}
       </div>
     );
   }
