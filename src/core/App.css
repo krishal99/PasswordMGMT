@@ -6,4 +6,24 @@
   margin-top: 10px;
 }
 
+.registerHere {
+  margin-top: 15px;
+}
 
+.registerHere a {
+  cursor: pointer;
+}
+
+.addSite {
+  float: right;
+  position: relative;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.logout {
+  margin-top: 4px !important;
+  margin-left: 4px !important;
+}

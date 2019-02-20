@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Segment } from 'semantic-ui-react';
+import { Button, Form, Divider, Header } from 'semantic-ui-react';
 import '../core/App.css';
 
 class Login extends Component {
@@ -7,8 +7,8 @@ class Login extends Component {
     super(props);
 
     this.state = {
-      username: '',
-      password: ''
+      username: 'n',
+      password: 'a'
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,7 +28,12 @@ class Login extends Component {
 
   render() {
     return (
-      <Segment>
+      <div>
+        <Divider horizontal>
+          <Header as='h4'>
+            Login
+          </Header>
+        </Divider>
         <Form>
           <Form.Field>
             <label>Username</label>
@@ -38,10 +43,10 @@ class Login extends Component {
             <label>Password</label>
             <input placeholder='Password' type='password' name='password' onChange={this.handleChange} />
           </Form.Field>
-          <Button primary type='submit' onClick={this.submit}>Login</Button>
-          <p onClick={this.props.register} >Register</p>
+          <Button primary type='submit' onClick={() => this.props.login(this.state.username, this.state.password)}>Login</Button>
+          <div className='registerHere' onClick={this.props.register} >Don't have an account? <a>Register here.</a></div>
         </Form>
-      </Segment>
+        </div>
     );
   }
 }

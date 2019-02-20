@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Image, List } from 'semantic-ui-react';
+import { Button, Image, List } from 'semantic-ui-react';
 import '../core/App.css';
 
 class SiteLink extends Component {
@@ -13,7 +13,7 @@ class SiteLink extends Component {
         return (
             <List.Item>
                 <List.Content floated='right'>
-                    <Button href={this.props.site.link}>Login</Button>
+                    <Button href={this.props.site.link} size='tiny'>Login</Button>
                 </List.Content>
                 <Image avatar src={this.props.site.link + '/favicon.ico'} />
                 <List.Content>{this.props.site.name}</List.Content>
